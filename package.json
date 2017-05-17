@@ -1,13 +1,11 @@
 {
   "name": "react-runkit-embed",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "RunKit component for React",
   "main": "index.js",
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --config webpack.config.js",
-    "build": "node ./node_modules/babel-cli/bin/babel RunKit.jsx --presets=es2015,react --out-file RunKit.js",
-    "clean": "rm RunKit.js",
-    "install": "npm run build"
+    "build": "rm RunKit.js; node ./node_modules/babel-cli/bin/babel RunKit.jsx --presets=es2015,react --out-file RunKit.js"
   },
   "author": "Arlo Miles",
   "license": "Apache-2.0",

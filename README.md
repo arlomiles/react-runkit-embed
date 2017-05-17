@@ -11,6 +11,14 @@ then
 then go to http://localhost:8080
 
 ## How to use
+`npm i react-runkit-embed`
+
+then
+
+`npm run build`
+
+then
+
 `import RunKit from 'react-runkit-embed/RunKit'`
 
 then
