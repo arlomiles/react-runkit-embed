@@ -1,6 +1,15 @@
 # react-runkit-embed
 Embed RunKit in your React apps
 
+## For a demo
+`npm i react-runkit-embed`
+
+then
+
+`npm start`
+
+then go to http://localhost:8080
+
 ## How to use
 `import RunKit from 'react-runkit-embed/RunKit'`
 
@@ -16,13 +25,9 @@ then
 - minHeight
 - packageResolutionTimestamp
 - preamble
-TODO:
 - onLoad
 - onURLChanged
 - onEvaluate
+- autoEval: automatically evaluate code if `'true'`
 
 See https://runkit.com/docs/embed for documentation on the parameters.
-
-## TODO
-- See parameters above
-- Notebook API

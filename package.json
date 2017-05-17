@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --config webpack.config.js",
     "build": "node ./node_modules/babel-cli/bin/babel RunKit.jsx --presets=es2015,react --out-file RunKit.js",
-    "clean": "rm RunKit.js"
+    "clean": "rm RunKit.js",
+    "install": "npm run build"
   },
   "author": "Arlo Miles",
   "license": "Apache-2.0",

@@ -2,63 +2,84 @@ import React from 'react'
 
 class RunKit extends React.Component {
 
+  constructor() {
+    super()
+    this.state = {}
+  }
+
   componentWillMount() {
     const script = document.createElement('script')
     script.src = 'https://embed.runkit.com'
     document.head.appendChild(script)
   }
 
-  defaultFunction(v, d) {
-    if(v === undefined) return d
-    else return v
-  }
-
   render() {
-    this.myParams = {}
-    this.myParams.source = this.props.children
-    this.myParams.readOnly = this.props.readOnly
-    this.myParams.nodeVersion = this.props.nodeVersion
-    this.myParams.env = this.props.env // TODO check that this gives an array
-    this.myParams.title = this.props.title
-    this.myParams.minHeight = parseInt(this.defaultFunction(this.props.minHeight, '130')) // FIXME this doesn't work for some reason; most likely a problem with RunKit's library
-    this.myParams.packageResolutionTimestamp = this.props.packageResolutionTimestamp
-    this.myParams.preamble = this.props.preamble
-    this.myParams.onLoad = this.props.onLoad
-    this.myParams.onURLChanged = this.props.onURLChanged
-    this.myParams.onEvaluate = this.props.onEvaluate
+    let runComponentDidMount2 = true
+    if(this.myNB !== undefined) {
+      if(
+        this.state.readOnly !== this.props.readOnly ||
+        this.state.nodeVersion !== this.props.nodeVersion ||
+        this.state.env !== this.props.env ||
+        this.state.title !== this.props.title ||
+        this.state.minHeight !== (this.props.minHeight || '130') ||
+        this.state.packageResolutionTimestamp !== this.props.packageResolutionTimestamp ||
+        this.state.onLoad !== this.props.onLoad ||
+        this.state.onURLChanged !== this.props.onURLChanged ||
+        this.state.onEvaluate !== this.props.onEvaluate ||
+        this.state.autoEval !== this.props.autoEval === 'true'
+      ) this.myDiv.innerHTML = ''
+      else runComponentDidMount2 = false
+    }
+    this.state.source = this.props.children
+    this.state.readOnly = this.props.readOnly
+    this.state.nodeVersion = this.props.nodeVersion
+    this.state.env = this.props.env
+    this.state.title = this.props.title
+    this.state.minHeight = this.props.minHeight || '130'
+    this.state.packageResolutionTimestamp = this.props.packageResolutionTimestamp
+    this.state.preamble = this.props.preamble || ''
+    this.state.onLoad = this.props.onLoad
+    this.state.onURLChanged = this.props.onURLChanged
+    this.state.onEvaluate = this.props.onEvaluate
+    this.state.autoEval = this.props.autoEval === 'true'
+    if(runComponentDidMount2) this.componentDidMount2()
+    else {
+      this.myNB.setSource(this.state.source)
+      this.myNB.setPreamble(this.state.preamble)
+      if(this.state.autoEval) this.myNB.evaluate()
+    }
     return (
       <div ref={(div) => this.myDiv = div}/>
     )
   }
 
-  componentDidMount(param) {
+  componentDidMount2(param) {
     // This hack exists because, for some reason, window.RunKit doesn't exist
     // when componentDidMount gets called. I don't know why.
     // FIXME
     if(param === undefined) param = this
     if(param === undefined) {
-      setTimeout(this.componentDidMount, 100, this)
+      setTimeout(this.componentDidMount2, 100, this)
     } else if(window.RunKit === undefined) {
-      setTimeout(param.componentDidMount, 100, param)
+      setTimeout(param.componentDidMount2, 100, param)
     }
     else {
-      console.log(param.myParams.readOnly)
-      window.RunKit.createNotebook({
+      param.myNB = window.RunKit.createNotebook({
         element: param.myDiv,
-        source: param.myParams.source,
-        readOnly: param.myParams.readOnly,
-        nodeVersion: param.myParams.nodeVersion,
-        env: param.myParams.env,
-        title: param.myParams.title,
-        minHeight: param.myParams.minHeight,
-        packageResolutionTimestamp: param.myParams.packageResolutionTimestamp,
-        preamble: param.myParams.preamble
-        // The following have been removed temporarily, because I don't know
-        // whether they will work properly in React.
-        // FIXME
-        /*onLoad:
-        onURLChanged:
-        onEvaluate: */
+        source: param.state.source,
+        readOnly: param.state.readOnly,
+        nodeVersion: param.state.nodeVersion,
+        env: param.state.env,
+        title: param.state.title,
+        minHeight: param.state.minHeight,
+        packageResolutionTimestamp: param.state.packageResolutionTimestamp,
+        preamble: param.state.preamble,
+        onLoad: param.state.autoEval ? (nb) => {
+          nb.evaluate()
+          param.state.onLoad(nb)
+        } : (nb) => param.state.onLoad(nb),
+        onURLChanged: (nb) => param.state.onURLChanged(nb),
+        onEvaluate: (nb) => param.state.onEvaluate(nb)
       })
     }
   }
