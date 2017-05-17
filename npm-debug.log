@@ -1,0 +1,104 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'publish' ]
+2 info using npm@3.5.2
+3 info using node@v4.2.6
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/home/arlo/Desktop/react-runkit-embed',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /home/arlo/.npm/react-runkit-embed/0.1.0/package.tgz not in flight; packing
+9 info lifecycle react-runkit-embed@0.1.0~prepublish: react-runkit-embed@0.1.0
+10 silly lifecycle react-runkit-embed@0.1.0~prepublish: no script for prepublish, continuing
+11 verbose tar pack [ '/home/arlo/.npm/react-runkit-embed/0.1.0/package.tgz',
+11 verbose tar pack   '/home/arlo/Desktop/react-runkit-embed' ]
+12 verbose tarball /home/arlo/.npm/react-runkit-embed/0.1.0/package.tgz
+13 verbose folder /home/arlo/Desktop/react-runkit-embed
+14 verbose addLocalTarball adding from inside cache /home/arlo/.npm/react-runkit-embed/0.1.0/package.tgz
+15 silly cache afterAdd react-runkit-embed@0.1.0
+16 verbose afterAdd /home/arlo/.npm/react-runkit-embed/0.1.0/package/package.json not in flight; writing
+17 verbose afterAdd /home/arlo/.npm/react-runkit-embed/0.1.0/package/package.json written
+18 silly publish { name: 'react-runkit-embed',
+18 silly publish   version: '0.1.0',
+18 silly publish   description: 'RunKit component for React',
+18 silly publish   main: 'index.js',
+18 silly publish   scripts:
+18 silly publish    { start: 'node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --config webpack.config.js',
+18 silly publish      build: 'node ./node_modules/babel-cli/bin/babel RunKit.jsx --presets=es2015,react --out-file RunKit.js',
+18 silly publish      clean: 'rm RunKit.js',
+18 silly publish      install: 'npm run build' },
+18 silly publish   author: { name: 'Arlo Miles' },
+18 silly publish   license: 'Apache-2.0',
+18 silly publish   dependencies:
+18 silly publish    { babel: '^6.23.0',
+18 silly publish      'babel-cli': '^6.24.1',
+18 silly publish      'babel-core': '^6.24.1',
+18 silly publish      'babel-loader': '^7.0.0',
+18 silly publish      'babel-preset-es2015': '^6.24.1',
+18 silly publish      'babel-preset-react': '^6.24.1',
+18 silly publish      react: '^15.5.4',
+18 silly publish      'react-dom': '^15.5.4',
+18 silly publish      webpack: '^2.5.1',
+18 silly publish      'webpack-dev-server': '^2.4.5' },
+18 silly publish   readme: '# react-runkit-embed\nEmbed RunKit in your React apps\n\n## For a demo\n`npm i react-runkit-embed`\n\nthen\n\n`npm start`\n\nthen go to http://localhost:8080\n\n## How to use\n`import RunKit from \'react-runkit-embed/RunKit\'`\n\nthen\n\n`<RunKit param=val...>your code here</RunKit>`\n\n### Parameters\n- readOnly\n- nodeVersion\n- env\n- title\n- minHeight\n- packageResolutionTimestamp\n- preamble\n- onLoad\n- onURLChanged\n- onEvaluate\n- autoEval: automatically evaluate code if `\'true\'`\n\nSee https://runkit.com/docs/embed for documentation on the parameters.',
+18 silly publish   readmeFilename: 'README.md',
+18 silly publish   gitHead: '5a16fcbb6af21602b7129405b7bed32f5b24ce36',
+18 silly publish   _id: 'react-runkit-embed@0.1.0',
+18 silly publish   _shasum: '42079c79b6d9b28e18a7b7ff24f5993c09dc42dc',
+18 silly publish   _from: '.' }
+19 verbose getPublishConfig undefined
+20 silly mapToRegistry name react-runkit-embed
+21 silly mapToRegistry using default registry
+22 silly mapToRegistry registry https://registry.npmjs.org/
+23 silly mapToRegistry uri https://registry.npmjs.org/react-runkit-embed
+24 verbose publish registryBase https://registry.npmjs.org/
+25 silly publish uploading /home/arlo/.npm/react-runkit-embed/0.1.0/package.tgz
+26 verbose request uri https://registry.npmjs.org/react-runkit-embed
+27 verbose request sending authorization for write operation
+28 info attempt registry request try #1 at 9:58:40 PM
+29 verbose request using bearer token for auth
+30 verbose request id 6a7447561bee8325
+31 http request PUT https://registry.npmjs.org/react-runkit-embed
+32 http 403 https://registry.npmjs.org/react-runkit-embed
+33 verbose headers { 'content-type': 'application/json',
+33 verbose headers   'cache-control': 'max-age=300',
+33 verbose headers   'content-length': '95',
+33 verbose headers   'accept-ranges': 'bytes',
+33 verbose headers   date: 'Wed, 17 May 2017 01:58:41 GMT',
+33 verbose headers   via: '1.1 varnish',
+33 verbose headers   connection: 'keep-alive',
+33 verbose headers   'x-served-by': 'cache-iad2134-IAD',
+33 verbose headers   'x-cache': 'MISS',
+33 verbose headers   'x-cache-hits': '0',
+33 verbose headers   'x-timer': 'S1494986320.483915,VS0,VE832',
+33 verbose headers   vary: 'Accept-Encoding' }
+34 verbose request invalidating /home/arlo/.npm/registry.npmjs.org/react-runkit-embed on PUT
+35 error publish Failed PUT 403
+36 verbose stack Error: "You cannot publish over the previously published version 0.1.0." : react-runkit-embed
+36 verbose stack     at makeError (/usr/share/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+36 verbose stack     at CachingRegistryClient.<anonymous> (/usr/share/npm/node_modules/npm-registry-client/lib/request.js:252:14)
+36 verbose stack     at Request._callback (/usr/share/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+36 verbose stack     at Request.self.callback (/usr/share/npm/node_modules/request/request.js:198:22)
+36 verbose stack     at emitTwo (events.js:87:13)
+36 verbose stack     at Request.emit (events.js:172:7)
+36 verbose stack     at Request.<anonymous> (/usr/share/npm/node_modules/request/request.js:1082:10)
+36 verbose stack     at emitOne (events.js:82:20)
+36 verbose stack     at Request.emit (events.js:169:7)
+36 verbose stack     at IncomingMessage.<anonymous> (/usr/share/npm/node_modules/request/request.js:1009:12)
+37 verbose statusCode 403
+38 verbose pkgid react-runkit-embed
+39 verbose cwd /home/arlo/Desktop/react-runkit-embed
+40 error Linux 4.8.0-51-generic
+41 error argv "/usr/bin/nodejs" "/usr/bin/npm" "publish"
+42 error node v4.2.6
+43 error npm  v3.5.2
+44 error code E403
+45 error "You cannot publish over the previously published version 0.1.0." : react-runkit-embed
+46 error If you need help, you may report this error at:
+46 error     <https://github.com/npm/npm/issues>
+47 verbose exit [ 1, true ]
